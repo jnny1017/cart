@@ -1,18 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
+import { createRoot } from 'react-dom/client';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 import App from './app/App';
 import { store } from './app/store';
+import Cart from './features/cart/Cart';
+import GlobalStyles from './styles/GlobalStyles';
 
-const root = ReactDOM.createRoot(
+const root = createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <>
+    <GlobalStyles />
+    <BrowserRouter>
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="cart" element={<Cart />} />
+        </Routes>
+      </Provider>
+    </BrowserRouter>
+  </>,
 );

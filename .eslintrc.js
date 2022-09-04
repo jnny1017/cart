@@ -15,8 +15,12 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading":"off",
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     'max-len': ['error', { code: 120 }],
+    "no-param-reassign": ["error", { "props": false }],
+    "@typescript-eslint/naming-convention": "off"
   },
   settings: {
     'import/resolver': {
@@ -25,4 +29,4 @@ module.exports = {
       },
     },
   },
-}
+};
