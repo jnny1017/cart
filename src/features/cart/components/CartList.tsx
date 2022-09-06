@@ -5,7 +5,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { decrementCount, deleteCart, incrementCount } from '../cartSlice';
 import Counter from '../../../components/Counter';
-import { MenuInfo } from '../cart.models';
+import { MenuModel } from '../cart.models';
 import {
   Section, Name, Price, MenuItem, DeleteButton,
 } from '../../../styles/menuStyle';
@@ -16,7 +16,7 @@ export default function CartList() {
 
   const { menus } = useAppSelector((state) => state.cart);
 
-  const handleClickDelete = (menu: MenuInfo) => {
+  const handleClickDelete = (menu: MenuModel) => {
     dispatch(deleteCart(menu));
   };
 

@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { DiscountModel, CartModel, Menu } from './cart.models';
+import {
+  DiscountModel, CartModel, MenuModel,
+} from './cart.models';
 
 const initialState: CartModel = {
   menus: [],
@@ -16,7 +18,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addCart: (state, { payload }: PayloadAction<Menu>) => {
+    addCart: (state, { payload }: PayloadAction<Pick<MenuModel, 'id' | 'name' | 'price'>>) => {
       const selectedMenu = state.menus.find(({ id }) => id === payload.id);
 
       if (selectedMenu) {
@@ -34,7 +36,7 @@ export const cartSlice = createSlice({
         isChecked: false,
       });
     },
-    deleteCart: (state, { payload }: PayloadAction<Menu>) => {
+    deleteCart: (state, { payload }: PayloadAction<MenuModel>) => {
       state.menus = state.menus.filter((menu) => menu.id !== payload.id);
     },
     incrementCount: (state, { payload }: PayloadAction<number>) => {

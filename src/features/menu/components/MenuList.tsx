@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { addCart } from '../../cart/cartSlice';
-import { Menu } from '../../cart/cart.models';
+import { MenuModel } from '../../cart/cart.models';
 import {
   Section, Category, Name, Price, MenuItem,
 } from '../../../styles/menuStyle';
@@ -10,7 +10,7 @@ export default function MenuList() {
   const dispatch = useAppDispatch();
   const { menu: { data } } = useAppSelector((state) => state);
 
-  const handleClick = (menu: Menu) => {
+  const handleClick = (menu: Pick<MenuModel, 'id' | 'name' | 'price'>) => {
     dispatch(addCart(menu));
   };
 

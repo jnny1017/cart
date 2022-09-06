@@ -1,25 +1,20 @@
-export interface MenuInfo {
+export interface MenuModel {
   id: string,
   name: string,
   price: number,
   count: number,
   discount_rate: number,
-}
-
-export interface Menu {
-  id: string,
-  name: string,
-  price: number,
-}
-
-export interface CartModel {
-  menu: MenuInfo,
-  discount: DiscountModel,
-  menus: Array<MenuInfo>,
+  isChecked: boolean,
 }
 
 export interface DiscountModel {
   id: string,
   name: string,
   discount_rate: number,
+}
+
+export interface CartModel {
+  discount: DiscountModel,
+  menus: Array<MenuModel>,
+  selectedDiscountId: any,
 }

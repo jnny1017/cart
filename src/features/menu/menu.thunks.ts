@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { MenuItem, MenuItemResponse } from './models/menu.models';
 
 const URL = 'https://us-central1-react-baemin.cloudfunctions.net/merchantInfo';
 
@@ -8,10 +9,10 @@ const fetchMenu = createAsyncThunk(
     const response = await fetch(URL);
     const data = await response.json();
 
-    const menu = data.items.reduce((acc: any, {
+    const menu = data.items.reduce((acc: Array<MenuItem>, {
       category_id, category_name, id, name, price,
-    } : any) => {
-      const items = acc.find((item: any) => category_id === item.category_id);
+    }: MenuItemResponse) => {
+      const items = acc.find((item) => category_id === item.category_id);
 
       if (items) {
         items.menu.push({ id, name, price });
