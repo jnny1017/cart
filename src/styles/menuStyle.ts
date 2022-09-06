@@ -9,11 +9,17 @@ const Wrap = styled.div`
 `;
 
 const Header = styled.div`
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
   display: flex;
   height: 60px;
   padding: 0 16px;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`
@@ -36,6 +42,16 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledLinkButton = styled(Link)`
+  background: #ffc107;
+  padding: 11px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  line-height: 19px;
+`;
+
 const Section = styled.div`
   border-top: 12px solid #eee;
   padding: 0 16px;
@@ -47,16 +63,12 @@ const MenuItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 24px 0;
+  padding: 24px 24px 24px 0;
   border-bottom: 1px solid #e0e0e0;
 
   &:last-child {
     margin-bottom: 0;
     border-bottom: 0;
-  }
-
-  & > * {
-
   }
 `;
 
@@ -69,6 +81,8 @@ const Category = styled.h2`
 const Name = styled.strong`
   font-size: 15px;
   font-weight: bold;
+  line-height: 1.3;
+  word-break: keep-all;
 `;
 
 const Price = styled.span`
@@ -200,7 +214,7 @@ const ModalTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 12px;
+  padding: 12px 0;
   background: #fff;
   border-bottom: 1px solid #ccc;
 `;
@@ -215,7 +229,7 @@ const ModalContent = styled.div`
   width: 80%;
   min-height: 10%;
   max-height: 80%;
-  padding: 16px;
+  padding: 0 16px 16px;
   border-radius: 4px;
   background-color: #fff;
   transform: translate(-50%, -50%);
@@ -254,7 +268,7 @@ const RoundSpinner = styled.div`
     margin: 0 auto;
     font-size: 0;
     line-height: 0;
-    border: 5px solid #cddc39;
+    border: 5px solid #ffc107;
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;
@@ -272,7 +286,27 @@ const RoundSpinner = styled.div`
     }
 `;
 
+const EmptyContent = styled.div`
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transform: translateY(-60px);
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
 export {
   Wrap, Header, Title, StyledLink, Section, Category, Name, Price, PointPrice, MenuItem, PaymentButton, DeleteButton,
   IconButton, StyledCounter, StyledModal, ModalTitle, ModalContent, ModalButton, CloseButton, RoundSpinner,
+  EmptyContent, StyledLinkButton,
 };

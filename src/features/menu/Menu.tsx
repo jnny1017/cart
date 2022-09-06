@@ -18,7 +18,7 @@ export default function Menu() {
 
   return (
     <Wrap>
-      {isLoading ? <Spinner /> : ''}
+      {isLoading && <Spinner />}
       <MenuHeader />
       <MenuList />
     </Wrap>

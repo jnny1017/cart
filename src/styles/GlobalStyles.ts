@@ -4,6 +4,9 @@ import reset from 'styled-reset';
 const globalStyles = createGlobalStyle`
   ${reset};
 
+  a{
+    text-decoration: none;
+  }
   button {
     margin: 0;
     padding: 0;
