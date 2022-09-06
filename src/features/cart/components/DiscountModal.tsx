@@ -40,7 +40,7 @@ export default function DiscountModal({ onClick } : any) {
           <MenuItem key={menu.id}>
             <Checkbox id={menu.id} data={menu} onChange={(isChecked) => handleChange(isChecked, menu)} />
             <PointPrice>
-              -₩
+              -
               {comma(Math.round((menu.price * menu.count) * (discount_rate / 100)))}
               할인
             </PointPrice>

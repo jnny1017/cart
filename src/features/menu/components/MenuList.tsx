@@ -23,7 +23,6 @@ export default function MenuList() {
             <MenuItem key={menu.id} onClick={() => handleClick(menu)}>
               <Name>{menu.name}</Name>
               <Price>
-                ₩
                 {comma(menu.price)}
               </Price>
             </MenuItem>

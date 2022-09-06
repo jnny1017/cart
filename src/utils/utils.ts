@@ -1,9 +1,4 @@
-const comma = (num: number | string | null): string | null => {
-  if (num === null) {
-    return null;
-  }
-  const regexp = /\B(?=(\d{3})+(?!\d))/g;
-  return num.toString().replace(regexp, ',');
-};
+const comma = (num: number | bigint): string => new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+  .format(num);
 
 export default comma;

@@ -16,14 +16,14 @@ export default function PaymentSection() {
   return (
     <PaymentButton disabled={underTotalPrice}>
       <span>
-        총 주문 금액 ₩
+        총 주문 금액
         {comma(totalPrice)}
       </span>
       {underTotalPrice
         ? (
           <span>
             (최소금액
-            {merchantInfo.minimum_order_price}
+            {comma(minimum_order_price)}
             이상 주문 가능)
           </span>
         )

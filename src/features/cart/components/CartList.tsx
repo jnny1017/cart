@@ -26,7 +26,6 @@ export default function CartList() {
         <MenuItem key={menu.id}>
           <Name>{menu.name}</Name>
           <Price>
-            ₩
             {comma(menu.price)}
           </Price>
           <DeleteButton onClick={() => handleClickDelete(menu)}>
