@@ -3,15 +3,14 @@ import {
   PaymentButton,
 } from '../../../styles/menuStyle';
 import comma from '../../../utils/utils';
-import merchantInfo from '../../../__mocks__/merchantInfo';
 import totalPriceSelector from '../totalPriceSelector';
 
 export default function PaymentSection() {
-  const { menus } = useAppSelector((state) => state.cart);
+  const { data: { minimum_order_price } } = useAppSelector((state) => state.menu);
 
   const totalPrice = useAppSelector(totalPriceSelector);
 
-  const underTotalPrice = totalPrice < merchantInfo.minimum_order_price;
+  const underTotalPrice = totalPrice < minimum_order_price;
 
   return (
     <PaymentButton disabled={underTotalPrice}>

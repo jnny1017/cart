@@ -26,6 +26,7 @@ const fetchMenu = createAsyncThunk(
       minimum_order_price: data.minimum_order_price,
       merchant_name: data.merchant_name,
       items: menu,
+      discounts: data.discounts,
     };
   },
 );
