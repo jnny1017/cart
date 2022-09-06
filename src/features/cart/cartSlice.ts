@@ -3,19 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DiscountModel, CartModel, Menu } from './cart.models';
 
 const initialState: CartModel = {
-  menu: {
-    id: '',
-    name: '',
-    price: 0,
-    count: 0,
-    discount_rate: 0,
-  },
+  menus: [],
   discount: {
     id: '',
     name: '',
     discount_rate: 0,
   },
-  menus: [],
+  selectedDiscountId: false,
 };
 
 export const cartSlice = createSlice({
@@ -35,8 +29,9 @@ export const cartSlice = createSlice({
         id: payload.id,
         name: payload.name,
         price: payload.price,
-        count: state.menu.count + 1,
+        count: 1,
         discount_rate: 0,
+        isChecked: false,
       });
     },
     deleteCart: (state, { payload }: PayloadAction<Menu>) => {
@@ -59,13 +54,18 @@ export const cartSlice = createSlice({
         discount_rate: payload.discount_rate,
       };
     },
-    updateDiscount: (state, { payload }: PayloadAction<Array<DiscountModel>>) => {
-      const selectedCartModel = payload.filter(({ id }: DiscountModel) => id);
-
+    selectDiscountId: (state, { payload }: PayloadAction<any>) => {
+      state.selectedDiscountId = payload;
+    },
+    updateDiscount: (state: any, { payload }: PayloadAction<any>) => {
       state.menus = state.menus
-        .map((item: any) => (
-          state.menus.filter((menu) => selectedCartModel.some((selectedMenu) => selectedMenu.id === menu.id))
-            ? { ...item, discount_rate: state.discount.discount_rate }
+        .map((item: MenuModel) => (
+          item.id === payload.menu.id
+            ? {
+              ...item,
+              isChecked: payload.isChecked,
+              discount_rate: payload.isChecked ? state.discount.discount_rate : 0,
+            }
             : item
         ));
     },
@@ -74,6 +74,7 @@ export const cartSlice = createSlice({
 
 export const {
   addCart, deleteCart, incrementCount, decrementCount, selectDiscount, updateDiscount,
+  selectDiscountId,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
