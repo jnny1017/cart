@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import Checkbox from '../../../components/Checkbox';
 import {
   Section, Category, Price, MenuItem, ModalButton,
@@ -7,12 +7,13 @@ import { DiscountModel } from '../cart.models';
 import useModal from '../../../hooks/useModal';
 import DiscountModal from './DiscountModal';
 import { selectDiscount } from '../cartSlice';
+import { useMenusQuery } from '../../../app/services/menu';
 
 export default function Discount() {
   const dispatch = useAppDispatch();
+  const { data } = useMenusQuery();
 
-  const { checkedList, Checkbox } = useCheckbox();
-  const { data: { discounts } } = useAppSelector((state) => state.menu);
+  const { discounts } = data;
 
   const { isOpen, toggle } = useModal();
 

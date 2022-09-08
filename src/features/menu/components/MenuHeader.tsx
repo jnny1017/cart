@@ -1,8 +1,12 @@
 import { useAppSelector } from '../../../app/hooks';
+import { useMenusQuery } from '../../../app/services/menu';
 import { Header, Title, StyledLink } from '../../../styles/menuStyle';
 
 export default function MenuHeader() {
-  const { menu: { data } } = useAppSelector((state) => state);
+  const { data } = useMenusQuery();
+
+  const { merchant_name } = data;
+
   const { cart: { menus } } = useAppSelector((state) => state);
 
   const totalCount = menus.reduce(
@@ -12,7 +16,7 @@ export default function MenuHeader() {
 
   return (
     <Header>
-      <Title>{data.merchant_name}</Title>
+      <Title>{merchant_name}</Title>
       <StyledLink to="cart">
         Cart
         <span>{totalCount}</span>

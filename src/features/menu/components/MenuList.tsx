@@ -1,4 +1,5 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
+import { useMenusQuery } from '../../../app/services/menu';
 import { addCart } from '../../cart/cartSlice';
 import { MenuModel } from '../../cart/cart.models';
 import {
@@ -8,7 +9,9 @@ import comma from '../../../utils/utils';
 
 export default function MenuList() {
   const dispatch = useAppDispatch();
-  const { menu: { data } } = useAppSelector((state) => state);
+  const { data } = useMenusQuery();
+
+  const { items } = data;
 
   const handleClick = (menu: Pick<MenuModel, 'id' | 'name' | 'price'>) => {
     dispatch(addCart(menu));
@@ -16,7 +19,7 @@ export default function MenuList() {
 
   return (
     <>
-      {data.items.map((item) => (
+      {items.map((item) => (
         <Section key={item.category_id}>
           <Category>{item.category_name}</Category>
           {item.menu.map((menu) => (

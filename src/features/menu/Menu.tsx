@@ -1,24 +1,22 @@
-import { useEffect } from 'react';
-
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import MenuHeader from './components/MenuHeader';
 import MenuList from './components/MenuList';
-import { Wrap } from '../../styles/menuStyle';
-import fetchMenu from './menu.thunks';
 import Spinner from '../../components/Spinner';
+import { useMenusQuery } from '../../app/services/menu';
+import { Wrap } from '../../styles/menuStyle';
 
 export default function Menu() {
-  const dispatch = useAppDispatch();
+  const { isError, isLoading, error } = useMenusQuery();
 
-  const { menu: { isLoading } } = useAppSelector((state) => state);
+  if (isError) {
+    return <div>{JSON.stringify(error)}</div>;
+  }
 
-  useEffect(() => {
-    dispatch(fetchMenu());
-  }, [dispatch]);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Wrap>
-      {isLoading && <Spinner />}
       <MenuHeader />
       <MenuList />
     </Wrap>

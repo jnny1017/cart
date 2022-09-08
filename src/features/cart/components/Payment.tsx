@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../../app/hooks';
+import { useMenusQuery } from '../../../app/services/menu';
 import {
   PaymentButton,
 } from '../../../styles/menuStyle';
@@ -6,7 +7,9 @@ import comma from '../../../utils/utils';
 import totalPriceSelector from '../totalPriceSelector';
 
 export default function PaymentSection() {
-  const { data: { minimum_order_price } } = useAppSelector((state) => state.menu);
+  const { data } = useMenusQuery();
+
+  const { minimum_order_price } = data;
 
   const totalPrice = useAppSelector(totalPriceSelector);
 
